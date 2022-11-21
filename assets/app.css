@@ -1,10 +1,3 @@
-body {
-  font-size: 16px;
-  line-height: normal;
-  color: #333;
-  background-color: #fff;
-}
-body .btn {
-  font-size: 16px;
-  line-height: normal;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
