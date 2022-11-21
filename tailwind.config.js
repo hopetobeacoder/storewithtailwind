@@ -7,10 +7,14 @@ module.exports = {
     './snippets/*.liquid',
     './templates/*.liquid',
     './templates/*.json',
-    './templates/customers/*.liquid'
+    './templates/customers/*.liquid',
+    './src/scss/app.scss',
+    './src/js/app.js',
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('autoprefixer'),
+  ],
 }
