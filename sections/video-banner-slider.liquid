@@ -1,0 +1,40 @@
+{{ 'base.css' | asset_url | stylesheet_tag }}
+{{ 'app.css' | asset_url | stylesheet_tag }}
+<h1>blabla</h1>
+<div></div>
+
+{% schema %}
+  {
+    "name": "Video Image Slider",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "url",
+        "id": "video_url",
+        "label": "Video URL"
+      }, {
+        "type": "checkbox",
+        "id": "video_checkbox",
+        "label": "Check to open the video"
+      }, {
+        "type": "range",
+        "id": "video_range",
+        "label": "Margin of the video",
+        "default": 0,
+        "min": -90,
+        "max": 90,
+        "step": 5,
+        "unit": "px"
+
+      }
+    ],
+    "presets": [
+      {
+        "name": "Video Image Slider"
+
+
+      }
+    ]
+  }
+{% endschema %}
