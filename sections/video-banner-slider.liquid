@@ -1,24 +1,25 @@
-{{ 'base.css' | asset_url | stylesheet_tag }}
-{{ 'app.css' | asset_url | stylesheet_tag }}
-
-{% style %}
-  .woon {
-    padding-top: "{{ section.settings.padding_top | times: 0.75 | round: 0 }}"px;
-
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-{% endstyle %}
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top}}px;
+      padding-bottom: {{ section.settings.padding_bottom}}px;
+    }
+{%- endstyle -%}
 
+<div class="section-{{ section.id }}-padding">
+  <div>
+    {% if section.settings.video_checkbox == true %}
+      <video autoplay="autoplay">
+        <source src="{{section.settings.video_url}}" type="video/mp4">
+      </video>
+    {% endif %}
+  </div>
 
-
-<div class="woon">
-  {% if section.settings.video_checkbox == true %}
-    <video autoplay id="video1">
-      <source src="{{section.settings.video_url}}" type="video/mp4">
-    </video>
-  {% endif %}
-  <h1>lol</h1>
 </div>
-
 
 {% schema %}
   {
@@ -30,14 +31,30 @@
         "type": "url",
         "id": "video_url",
         "label": "Video URL"
-      }, {
+      },
+      {
         "type": "checkbox",
         "id": "video_checkbox",
         "label": "Check to open the video"
-      }, {
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
         "type": "range",
         "id": "padding_top",
-        "label": "Top padding of the video",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 0,
+        "min": -90,
+        "max": 90,
+        "step": 5,
+        "unit": "px"
+
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "t:sections.all.padding.padding_bottom",
         "default": 0,
         "min": -90,
         "max": 90,
