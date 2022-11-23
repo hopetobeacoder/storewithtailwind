@@ -1,7 +1,24 @@
 {{ 'base.css' | asset_url | stylesheet_tag }}
 {{ 'app.css' | asset_url | stylesheet_tag }}
-<h1>blabla</h1>
-<div></div>
+
+{% style %}
+  .woon {
+    padding-top: "{{ section.settings.padding_top | times: 0.75 | round: 0 }}"px;
+
+  }
+{% endstyle %}
+
+
+
+<div class="woon">
+  {% if section.settings.video_checkbox == true %}
+    <video autoplay id="video1">
+      <source src="{{section.settings.video_url}}" type="video/mp4">
+    </video>
+  {% endif %}
+  <h1>lol</h1>
+</div>
+
 
 {% schema %}
   {
@@ -19,8 +36,8 @@
         "label": "Check to open the video"
       }, {
         "type": "range",
-        "id": "video_range",
-        "label": "Margin of the video",
+        "id": "padding_top",
+        "label": "Top padding of the video",
         "default": 0,
         "min": -90,
         "max": 90,
